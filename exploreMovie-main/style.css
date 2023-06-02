@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hahmlet:wght@200;400;600;700&display=swap");
+
+* {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-family: "Hahmlet", serif;
+}
+
+body {
+  background-color: #313131;
+}
+
+header {
+  padding: 20px 0px;
+  background-color: rgb(255, 161, 161);
+  text-align: center;
+  line-height: 40px;
+  color: #313131;
+  width: 100%;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 33px;
+}
+
+main {
+  color: #ffffff;
+}
+
+/* 검색 부분 */
+.search {
+  width: 100%;
+  padding: 15px 0px;
+  border-bottom: 1px solid rgb(159, 159, 159);
+  font-size: larger;
+  color: rgb(255, 161, 161);
+  text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#search_input {
+  margin-left: 10px;
+  margin-right: 5px;
+  width: 30%;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: medium;
+  ime-mode: inactive;
+}
+
+#search_btn {
+  background-color: rgb(255, 161, 161);
+  color: #313131;
+  font-size: medium;
+  border-radius: 5px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+/* 영화 카드 부분 */
+.searchCards {
+  background-color: bisque;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(400px, auto));
+  grid-template-rows: repeat(auto-fill, minmax(20%, auto));
+  justify-content: center;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.movie-card {
+  width: 300px;
+  margin: 10px;
+  border-radius: 7px;
+  background-color: #f4f4f4;
+  color: #313131;
+  justify-self: center;
+  cursor: pointer;
+}
+
+.cards > .movie_rate {
+  position: relative;
+  bottom: 2px;
+}
+
+.movie-card:hover {
+  box-shadow: 0 3px 10px rgba(255, 161, 161, 0.7),
+    0 3px 10px rgba(255, 161, 161, 0.7);
+}
+
+/* 검색 결과 설명 */
+.info-card {
+  display: none;
+  justify-content: center;
+  color: rgb(255, 161, 161);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.movie_img {
+  width: 100%;
+  border-radius: 7px 7px 0px 0px;
+}
+
+.movie_name {
+  padding-top: 5px;
+  font-family: "DM Serif Display", serif;
+  font-size: 20px;
+  line-height: 23px;
+  height: 50px;
+  align-items: center;
+  text-align: center;
+}
+
+.movie_name,
+.movie_desc,
+.movie_rate {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.movie_desc {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-family: "DM Serif Display", serif;
+  font-size: 17px;
+  color: #414141;
+}
+
+.movie_rate {
+  margin-top: 8px;
+  padding: 5px;
+  font-size: 15.5px;
+  background-color: rgb(255, 161, 161);
+  width: fit-content;
+  height: fit-content;
+  border-radius: 3px;
+}
