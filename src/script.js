@@ -24,7 +24,7 @@ fetch(
     response.results.forEach((movie) => {
       resultArray.push(movie);
 
-      let temp_html = `<div class="movie-card" onclick="alert('영화 <${movie.title}>의 ID는 ${movie.id} 입니다');">
+      let temp_html = `<div class="movie-card" onClick="location.href='detail.html?id='+${movie.id}">
                         <img
                           class="movie_img"
                           src="https://image.tmdb.org/t/p/original${movie.poster_path}"

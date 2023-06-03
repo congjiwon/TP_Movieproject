@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/index.css" />
     <title>Movie Explore</title>
   </head>
 
@@ -18,7 +20,7 @@
     <main>
       <!-- submit 후 새로고침 방지 => onsubmit="return false" -->
       <form id="search" class="search" name="search" onsubmit="return false">
-        <p>영화 검색 🍿</p>
+        <p class="movieSearch">영화 검색 🍿</p>
         <!-- 페이지 로드 / 새로고침 후 자동으로 검색창에 커서가 가도록 autofocus -->
         <input type="text" id="search_input" autocomplete="off" autofocus />
         <button type="submit" id="search_btn"><b>검색</b></button>
@@ -30,5 +32,5 @@
       <div class="cards" id="movies"></div>
     </main>
   </body>
-  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="./src/script.js"></script>
 </html>
