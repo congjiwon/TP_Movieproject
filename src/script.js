@@ -15,7 +15,7 @@ const searchButton = document.getElementById("search_btn");
 // Top Rated 영화 목록 API 받아오기
 // index.html id="movies" 부분에 카드 추가 (forEach 사용)
 fetch(
-  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
   options
 )
   .then((response) => response.json())

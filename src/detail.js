@@ -8,13 +8,21 @@ const options = {
 };
 
 let id = location.href.substr(location.href.lastIndexOf("=") + 1);
+
+let movieName = document.querySelector("#movieName");
+let moviePoster = document.querySelector(".movie_img");
+
 const apiURL = "https://api.themoviedb.org/3/movie/" + id;
 
 fetch(apiURL, options)
   .then((response) => response.json())
   .then((response) => {
-    console.log(response);
-    let movieName = document.querySelector("#movieName");
-    movieName.textContent = id + response.title;
+    console.log(response.poster_path);
+    movieName.textContent = response.title;
+    moviePoster.innerHTML = `<img
+                              class="movie_img"
+                              src="https://image.tmdb.org/t/p/original${response.poster_path}"
+                              alt=""
+                            />`;
   })
   .catch((err) => console.error(err));
