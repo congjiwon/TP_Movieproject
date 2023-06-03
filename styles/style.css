@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hahmlet:wght@200;400;600;700&display=swap");
+
+* {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-family: "Hahmlet", serif;
+}
+
+body {
+  background-color: #313131;
+}
+
+header {
+  padding: 20px 0px;
+  background-color: rgb(255, 161, 161);
+  text-align: center;
+  line-height: 40px;
+  color: #313131;
+  width: 100%;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 33px;
+}
+
+main {
+  color: #ffffff;
+}

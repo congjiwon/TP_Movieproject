@@ -15,7 +15,7 @@ const searchButton = document.getElementById("search_btn");
 // Top Rated 영화 목록 API 받아오기
 // index.html id="movies" 부분에 카드 추가 (forEach 사용)
 fetch(
-  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
   options
 )
   .then((response) => response.json())
@@ -24,7 +24,7 @@ fetch(
     response.results.forEach((movie) => {
       resultArray.push(movie);
 
-      let temp_html = `<div class="movie-card" onclick="alert('영화 <${movie.title}>의 ID는 ${movie.id} 입니다');">
+      let temp_html = `<div class="movie-card" onClick="location.href='detail.html?id='+${movie.id}">
                         <img
                           class="movie_img"
                           src="https://image.tmdb.org/t/p/original${movie.poster_path}"
