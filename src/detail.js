@@ -10,15 +10,29 @@ const options = {
 let id = location.href.substr(location.href.lastIndexOf("=") + 1);
 
 let movieName = document.querySelector("#movieName");
-let moviePoster = document.querySelector(".movie_img");
+let movieOriginName = document.querySelector("#movieOriginName");
+let moviePoster = document.querySelector("#moviePoster");
+let movieRelease = document.querySelector("#movieRelease");
+let movieGenre = document.querySelector("#movieGenre");
+let movieRuntime = document.querySelector("#movieRuntime");
+let movieRate = document.querySelector("#movieRate");
+let movieOverview = document.querySelector("#movieOverview");
 
 const apiURL = "https://api.themoviedb.org/3/movie/" + id;
 
 fetch(apiURL, options)
   .then((response) => response.json())
   .then((response) => {
-    console.log(response.poster_path);
+    console.log(response);
+    console.log(response.genres);
     movieName.textContent = response.title;
+    movieOriginName.textContent = response.original_title;
+    movieRelease.textContent = "개봉 | " + response.release_date;
+    movieGenre.textContent = "장르 | " + response.genres[1].name;
+    movieRuntime.textContent = "러닝타임 | " + response.runtime + "분";
+    movieRate.textContent =
+      "평점 | " + Math.round(response.vote_average * 10) / 10;
+    movieOverview.textContent = response.overview;
     moviePoster.innerHTML = `<img
                               class="movie_img"
                               src="https://image.tmdb.org/t/p/original${response.poster_path}"
