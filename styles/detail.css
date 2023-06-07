@@ -39,7 +39,7 @@ main {
 }
 
 #moviePoster {
-  width: 230px;
+  width: 250px;
   align-items: center;
 }
 
@@ -50,9 +50,9 @@ main {
   border-radius: 10px;
 }
 
-/* .movie_info {
-  line-height: 40px;
-} */
+.movie_info {
+  line-height: 30px;
+}
 
 #movieOverview {
   padding-top: 20px;
