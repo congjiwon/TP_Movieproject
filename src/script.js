@@ -25,14 +25,20 @@ fetch(
     response.results.forEach((movie) => {
       resultArray.push(movie);
 
-      let temp_html = `<div class="movie-card" onClick="location.href='detail.html?id='+${movie.id}">
+      let temp_html = `<div class="movie-card" onClick="location.href='detail.html?id='+${
+        movie.id
+      }">
                         <img
                           class="movie_img"
-                          src="https://image.tmdb.org/t/p/original${movie.poster_path}"
+                          src="https://image.tmdb.org/t/p/original${
+                            movie.poster_path
+                          }"
                           alt=""
                         />
                         <p class="movie_name"><b>${movie.title}</b></p>
-                        <p class="movie_rate ${getColor(movie.vote_average)}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
+                        <p class="movie_rate ${getColor(
+                          movie.vote_average
+                        )}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
                         <p class="movie_desc">${movie.overview}</p>
                       </div>`;
 
@@ -43,6 +49,18 @@ fetch(
 
     // 검색
     searchButton.addEventListener("click", () => {
+      function checkEng() {
+        let input = searchInput.value;
+        let regex = /^[A-Za-z0-9]+$/; // 영어,숫자 포함된 문자열인지 확인
+
+        if (!regex.test(input)) {
+          alert("영어 또는 숫자로만 검색이 가능합니다");
+          return false;
+        }
+        return true;
+      }
+      checkEng();
+
       document.querySelector("#movies").innerHTML = "";
 
       const searchTerm = searchInput.value.toLowerCase();
@@ -60,14 +78,20 @@ fetch(
           "검색 결과 : " + filteredMovies.length + "개";
 
         filteredMovies.forEach((movie) => {
-          let search_html = `<div class="movie-card" onClick="location.href='detail.html?id='+${movie.id}">
+          let search_html = `<div class="movie-card" onClick="location.href='detail.html?id='+${
+            movie.id
+          }">
                               <img
                                 class="movie_img"
-                                src="https://image.tmdb.org/t/p/original${movie.poster_path}"
+                                src="https://image.tmdb.org/t/p/original${
+                                  movie.poster_path
+                                }"
                                 alt=""
                               />
                               <p class="movie_name"><b>${movie.title}</b></p>
-                              <p class="movie_rate ${getColor(movie.vote_average)}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
+                              <p class="movie_rate ${getColor(
+                                movie.vote_average
+                              )}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
                               <p class="movie_desc">${movie.overview}</p>
                             </div>`;
 
@@ -88,11 +112,11 @@ fetch(
   .catch((err) => console.error(err));
 
 function getColor(vote_average) {
- if (vote_average >= 8) {
-  return 'pink'
- } else if (vote_average >= 7) {
-   return 'yellow'
- } else {
-   return 'blue'
+  if (vote_average >= 8) {
+    return "pink";
+  } else if (vote_average >= 7) {
+    return "yellow";
+  } else {
+    return "blue";
   }
- }
+}
