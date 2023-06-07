@@ -107,9 +107,9 @@ section {
 *[hidden] {
   display: none;
 }
-body {
-  /* line-height: 1; */
-}
+/* body {
+  line-height: 1;
+} */
 menu,
 ol,
 ul {
