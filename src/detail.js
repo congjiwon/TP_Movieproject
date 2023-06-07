@@ -54,11 +54,13 @@ fetch(apiURL, options)
 // 리뷰 표시하는 함수
 function displayReviews() {
   let reviews = getReviewsFromLocalStorage();
+  let movieId = location.href.substr(location.href.lastIndexOf("=") + 1);
+  let filteredReviews = reviews.filter((review) => review.movieId === movieId); // movie id 필터링해서 표시하기
   commentsSection.innerHTML = "";
 
-  for (let i = 0; i < reviews.length; i++) {
-    let review = reviews[i];
-    let commentDiv = document.createElement("div");
+  for (let i = 0; i < filteredReviews.length; i++) { //필터링
+    let review = filteredReviews[i];
+    let commentDiv = document.createElement("div"); 
     commentDiv.className = "comment";
     commentDiv.innerHTML = `
       <h3>${review.author}</h3>
@@ -70,7 +72,7 @@ function displayReviews() {
       </div>
     `;
 
-    // 위에 edit과 delete 클래스 요소를 변수에 할당
+    // edit과 delete 클래스 요소를 변수에 할당
     let editButton = commentDiv.querySelector(".comment-edit");
     let deleteButton = commentDiv.querySelector(".comment-delete");
 
@@ -102,6 +104,8 @@ function getReviewsFromLocalStorage() {
 // 로컬 스토리지에 저장
 function saveReviewToLocalStorage(review) {
   let reviews = getReviewsFromLocalStorage(); // 겟리뷰에서 함수 호출
+  let movieId = location.href.substr(location.href.lastIndexOf("=") + 1);
+  review.movieId = movieId; // 리뷰 저장시 id도 함께 저장
   reviews.push(review); // 리뷰 배열에 추가한다 (push 메소드 사용)
   localStorage.setItem("reviews", JSON.stringify(reviews)); // json 문자열로 저장
 }
