@@ -139,3 +139,12 @@ main {
 .comment-delete:hover {
   background-color: rgb(251, 191, 191);
 }
+
+.score {
+  margin: 0 10px 0 10px;
+}
+
+.time {
+  font-size: 12px;
+  padding-bottom: 0;
+}

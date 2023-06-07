@@ -35,7 +35,18 @@
         <form id="reviewForm">
           <div class="input-row">
             <input type="text" id="author" placeholder="작성자" />
-            <input type="password" id="password" placeholder="확인 비밀번호" />
+            <select id="score">
+              <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+              <option value="4">⭐️⭐️⭐️⭐️</option>
+              <option value="3">⭐️⭐️⭐️</option>
+              <option value="2">⭐️⭐️</option>
+              <option value="1">⭐️</option>
+            </select>
+            <input
+              type="password"
+              id="password"
+              placeholder="확인 비밀번호 (숫자 4자리)"
+            />
           </div>
           <textarea id="review" placeholder="리뷰 작성"></textarea>
           <button type="submit">리뷰 작성</button>

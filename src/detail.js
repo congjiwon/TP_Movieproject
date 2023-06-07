@@ -25,6 +25,7 @@ let reviewInput = document.querySelector("#review");
 let authorInput = document.querySelector("#author");
 let passwordInput = document.querySelector("#password");
 let commentsSection = document.querySelector("#comments");
+let scoreInput = document.getElementById("score");
 
 const apiURL = "https://api.themoviedb.org/3/movie/" + id;
 
@@ -65,13 +66,16 @@ function displayReviews() {
   for (let i = 0; i < filteredReviews.length; i++) {
     //필터링
     let review = filteredReviews[i];
+    let star = "⭐️";
+    let score = star.repeat(review.score);
+
     let commentDiv = document.createElement("div");
     commentDiv.className = "comment";
     commentDiv.innerHTML = `
-      <h3>${review.author}</h3>
+      <h3>${review.author} <span class="score">${score}</span> <span class="time">${review.time}</span></h3>
       <p>${review.content}</p>
       <div class="comment-options">
-        <input type="password" class="comment-password" placeholder="확인 비밀번호" />
+        <input type="password" class="comment-password" placeholder="확인 비밀번호 (숫자 4자리)" />
         <button class="comment-edit">수정</button>
         <button class="comment-delete">삭제</button>
       </div>
@@ -155,13 +159,17 @@ reviewForm.addEventListener("submit", (e) => {
   let reviewContent = reviewInput.value;
   let author = authorInput.value;
   let password = passwordInput.value;
+  let score = scoreInput.value;
+  let time = currentTime();
 
   if (reviewContent && author && password) {
     // 모두 입력이 됐을때 (논리곱 연산자 사용)
     let review = {
       content: reviewContent,
       author: author,
+      score: score,
       password: password,
+      time: time,
     };
 
     saveReviewToLocalStorage(review); // 로컬 스토리지에 저장
@@ -172,4 +180,36 @@ reviewForm.addEventListener("submit", (e) => {
   } else {
     alert("리뷰, 작성자, 확인 비밀번호를 모두 입력해주세요.");
   }
+
+  let passwordStandard = /^\d{4}$/;
+  if (passwordStandard.test(password) === false) {
+    alert("비밀번호는 숫자 4자리로 입력해야합니다");
+  }
 });
+
+//댓글 입력한 시간 가져로는 시간 함수
+const currentTime = function () {
+  let today = new Date();
+
+  let year = today.getFullYear();
+  let month = ("0" + (today.getMonth() + 1)).slice(-2);
+  let day = ("0" + today.getDate()).slice(-2);
+
+  let hours = ("0" + today.getHours()).slice(-2);
+  let minutes = ("0" + today.getMinutes()).slice(-2);
+  let seconds = ("0" + today.getSeconds()).slice(-2);
+
+  let now =
+    year +
+    "-" +
+    month +
+    "-" +
+    day +
+    " " +
+    hours +
+    ":" +
+    minutes +
+    ":" +
+    seconds;
+  return now;
+};
