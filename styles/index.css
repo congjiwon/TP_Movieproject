@@ -1,3 +1,7 @@
+header {
+  cursor: pointer;
+}
+
 /* 검색 부분 */
 .search {
   width: 100%;
