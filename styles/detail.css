@@ -94,6 +94,10 @@ main {
   cursor: pointer;
 }
 
+#score {
+  margin-right: 10px;
+}
+
 #comments {
   margin-top: 30px;
   padding-top: 30px; /* comments와 리뷰들 사이의 간격을 늘리기 위해 추가 */

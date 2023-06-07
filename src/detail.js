@@ -32,8 +32,6 @@ const apiURL = "https://api.themoviedb.org/3/movie/" + id;
 fetch(apiURL, options)
   .then((response) => response.json())
   .then((response) => {
-    console.log(response);
-    console.log(response.genres);
     genresArr = [];
     for (i = 0; i < response.genres.length; i++) {
       genresArr.push(" " + response.genres[i].name);
