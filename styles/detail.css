@@ -1,5 +1,18 @@
+#back_btn {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: small;
+  color: #313131;
+  text-decoration: none;
+}
+
+#back_btn:hover {
+  color: #f4f4f4;
+}
+
 main {
-  width: 800px;
+  width: 70%;
   height: fit-content;
   background-color: #f4f4f4;
   color: #313131;
