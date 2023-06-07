@@ -31,8 +31,21 @@
         <p id="movieRate"></p>
       </div>
       <div id="movieOverview"></div>
-      <div class="review">여기는 리뷰!!</div>
+      <div class="review">
+        <form id="reviewForm">
+          <div class="input-row">
+            <input type="text" id="author" placeholder="작성자" />
+            <input type="password" id="password" placeholder="확인 비밀번호" />
+          </div>
+          <textarea id="review" placeholder="리뷰 작성"></textarea>
+          <button type="submit">리뷰 작성</button>
+        </form>
+        <div id="comments"></div>
+      </div>
+      
     </main>
+
+    <script type="text/javascript" src="./src/detail.js"></script>
   </body>
-  <script type="text/javascript" src="./src/detail.js"></script>
 </html>
+

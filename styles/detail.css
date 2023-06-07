@@ -56,8 +56,85 @@ main {
   padding-top: 20px;
   clear: both;
   font-size: 17px;
+  margin-bottom: 50px; /* 추가된 부분 */
 }
 
-.review {
-  margin-top: 30px;
+.review form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
+
+.review form .input-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.review form .input-row input {
+  margin-right: 10px;
+}
+
+.review form textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.review form button {
+  padding: 10px 20px;
+  background-color: rgb(255, 161, 161);
+  color: #313131;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#comments {
+  margin-top: 30px;
+  padding-top: 30px; /* comments와 리뷰들 사이의 간격을 늘리기 위해 추가 */
+  border-top: 1px solid #ccc; /* comments와 리뷰들 사이에 구분선을 추가 */
+}
+
+.comment {
+  margin-bottom: 20px;
+}
+
+.comment h3 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.comment p {
+  margin-bottom: 10px;
+}
+
+.comment-options {
+  display: flex;
+  align-items: center;
+}
+
+.comment-password {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+}
+
+.comment-edit,
+.comment-delete {
+  padding: 5px 10px;
+  background-color: rgb(255, 161, 161);
+  color: #313131;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.comment-edit:hover,
+.comment-delete:hover {
+  background-color: rgb(251, 191, 191);
+}
+
