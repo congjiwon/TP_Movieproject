@@ -33,10 +33,14 @@ fetch(apiURL, options)
   .then((response) => {
     console.log(response);
     console.log(response.genres);
+    genresArr = [];
+    for (i = 0; i < response.genres.length; i++) {
+      genresArr.push(" " + response.genres[i].name);
+    }
     movieName.textContent = response.title;
     movieOriginName.textContent = response.original_title;
     movieRelease.textContent = "개봉 | " + response.release_date;
-    movieGenre.textContent = "장르 | " + response.genres[1].name;
+    movieGenre.textContent = "장르 | " + genresArr;
     movieRuntime.textContent = "러닝타임 | " + response.runtime + "분";
     movieRate.textContent =
       "평점 | " + Math.round(response.vote_average * 10) / 10; // 숫자 결과를 문자열로 변환 (number → string 조건 충족)
@@ -58,9 +62,10 @@ function displayReviews() {
   let filteredReviews = reviews.filter((review) => review.movieId === movieId); // movie id 필터링해서 표시하기
   commentsSection.innerHTML = "";
 
-  for (let i = 0; i < filteredReviews.length; i++) { //필터링
+  for (let i = 0; i < filteredReviews.length; i++) {
+    //필터링
     let review = filteredReviews[i];
-    let commentDiv = document.createElement("div"); 
+    let commentDiv = document.createElement("div");
     commentDiv.className = "comment";
     commentDiv.innerHTML = `
       <h3>${review.author}</h3>
@@ -93,7 +98,7 @@ function displayReviews() {
 }
 
 // 로컬 스토리지에서 리뷰 목록을 가져옴
-function getReviewsFromLocalStorage() { 
+function getReviewsFromLocalStorage() {
   let reviews = localStorage.getItem("reviews");
   if (reviews) {
     return JSON.parse(reviews); // 문자열을 javascript 객체로 변환
@@ -115,7 +120,8 @@ function editReview(index, password) {
   let reviews = getReviewsFromLocalStorage();
   let review = reviews[index]; // 해당 인덱스에 위치한 리뷰를 가져옴
 
-  if (review.password === password) { // 패스워드가 일치하는 지 확인 (조건문 중첩-2중 if 사용)
+  if (review.password === password) {
+    // 패스워드가 일치하는 지 확인 (조건문 중첩-2중 if 사용)
     let newContent = prompt("수정할 내용을 입력하세요:", review.content); // 일치하면 prompt 사용하여 수정할 내용을 입력받음
     if (newContent) {
       review.content = newContent; // 뉴 콘텐트를 받음
@@ -150,7 +156,8 @@ reviewForm.addEventListener("submit", (e) => {
   let author = authorInput.value;
   let password = passwordInput.value;
 
-  if (reviewContent && author && password) { // 모두 입력이 됐을때 (논리곱 연산자 사용)
+  if (reviewContent && author && password) {
+    // 모두 입력이 됐을때 (논리곱 연산자 사용)
     let review = {
       content: reviewContent,
       author: author,

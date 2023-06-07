@@ -28,6 +28,8 @@ main {
 #movieName {
   font-size: 40px;
   font-weight: 600;
+  line-height: 40px;
+  margin-bottom: 10px;
 }
 
 #movieOriginName {
@@ -48,9 +50,9 @@ main {
   border-radius: 10px;
 }
 
-.movie_info {
+/* .movie_info {
   line-height: 40px;
-}
+} */
 
 #movieOverview {
   padding-top: 20px;
@@ -137,4 +139,3 @@ main {
 .comment-delete:hover {
   background-color: rgb(251, 191, 191);
 }
-
