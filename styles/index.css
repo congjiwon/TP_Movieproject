@@ -27,7 +27,6 @@ header {
   padding: 5px;
   border-radius: 5px;
   font-size: medium;
-  ime-mode: inactive;
 }
 
 #search_btn {
