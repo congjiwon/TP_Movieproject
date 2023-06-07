@@ -160,8 +160,10 @@ reviewForm.addEventListener("submit", (e) => {
   let score = scoreInput.value;
   let time = currentTime();
 
-  if (reviewContent && author && password) {
-    // 모두 입력이 됐을때 (논리곱 연산자 사용)
+  let passwordStandard = /^\d{4}$/;
+  if (!passwordStandard.test(password) && reviewContent && author) {
+    alert("비밀번호는 숫자 4자리로 입력해야합니다");
+  } else if (reviewContent && author && password) {
     let review = {
       content: reviewContent,
       author: author,
@@ -169,7 +171,6 @@ reviewForm.addEventListener("submit", (e) => {
       password: password,
       time: time,
     };
-
     saveReviewToLocalStorage(review); // 로컬 스토리지에 저장
     reviewInput.value = "";
     authorInput.value = "";
@@ -177,11 +178,6 @@ reviewForm.addEventListener("submit", (e) => {
     displayReviews(); // 함수 호출
   } else {
     alert("리뷰, 작성자, 확인 비밀번호를 모두 입력해주세요.");
-  }
-
-  let passwordStandard = /^\d{4}$/;
-  if (passwordStandard.test(password) === false) {
-    alert("비밀번호는 숫자 4자리로 입력해야합니다");
   }
 });
 
