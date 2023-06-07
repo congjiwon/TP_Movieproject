@@ -20,6 +20,7 @@ fetch(
 )
   .then((response) => response.json())
   .then((response) => {
+    // console.log(response);
     // 전체 영화 나열
     response.results.forEach((movie) => {
       resultArray.push(movie);
@@ -31,7 +32,7 @@ fetch(
                           alt=""
                         />
                         <p class="movie_name"><b>${movie.title}</b></p>
-                        <p class="movie_rate">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
+                        <p class="movie_rate ${getColor(movie.vote_average)}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
                         <p class="movie_desc">${movie.overview}</p>
                       </div>`;
 
@@ -66,7 +67,7 @@ fetch(
                                 alt=""
                               />
                               <p class="movie_name"><b>${movie.title}</b></p>
-                              <p class="movie_rate">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
+                              <p class="movie_rate ${getColor(movie.vote_average)}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
                               <p class="movie_desc">${movie.overview}</p>
                             </div>`;
 
@@ -85,3 +86,13 @@ fetch(
     });
   })
   .catch((err) => console.error(err));
+
+function getColor(vote_average) {
+ if (vote_average >= 8) {
+  return 'pink'
+ } else if (vote_average >= 7) {
+   return 'yellow'
+ } else {
+   return 'blue'
+  }
+ }
