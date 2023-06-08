@@ -47,6 +47,50 @@ fetch(
         .insertAdjacentHTML("beforeend", temp_html);
     });
 
+    // 평점순으로 정렬
+    const vote_btn = document.getElementById("vote");
+    const arr1 = [];
+    for (let i = 0; i < resultArray.length; i++) {
+      arr1.push(resultArray[i]);
+    }
+
+    vote_btn.addEventListener("click", () => {
+      arr1.sort(function (a, b) {
+        return b.vote_average - a.vote_average;
+      });
+      document.querySelector("#movies").innerHTML = "";
+      arr1.forEach((movie) => {
+        console.log(movie.id);
+
+        let temp_html = `<div class="movie-card" onClick="location.href='detail.html?id='+${
+          movie.id
+        }">
+                          <img
+                            class="movie_img"
+                            src="https://image.tmdb.org/t/p/original${
+                              movie.poster_path
+                            }"
+                            alt=""
+                          />
+                          <p class="movie_name"><b>${movie.title}</b></p>
+                          <p class="movie_rate ${getColor(
+                            movie.vote_average
+                          )}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
+                          <p class="movie_desc">${movie.overview}</p>
+                        </div>`;
+
+        document
+          .querySelector("#movies")
+          .insertAdjacentHTML("beforeend", temp_html);
+      });
+    });
+
+    // 인기순으로 정렬
+    const popular_btn = document.getElementById("popular");
+    popular_btn.addEventListener("click", () => {
+      window.location.reload();
+    });
+
     // 검색
     searchButton.addEventListener("click", () => {
       function checkEng() {

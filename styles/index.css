@@ -132,3 +132,25 @@ header {
   background-color: rgb(181, 192, 253);
   color: #313131;
 }
+
+.buttons {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#vote,
+#popular {
+  font-size: 17px;
+  color: #313131;
+  text-decoration: none;
+  background-color: rgb(255, 161, 161);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#vote:hover,
+#popular:hover {
+  color: #f4f4f4;
+}
