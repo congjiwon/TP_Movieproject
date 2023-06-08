@@ -19,6 +19,7 @@ let movieGenre = document.querySelector("#movieGenre");
 let movieRuntime = document.querySelector("#movieRuntime");
 let movieRate = document.querySelector("#movieRate");
 let movieOverview = document.querySelector("#movieOverview");
+let movieVideo = document.querySelector("#movieVideo");
 // 리뷰 dom 요소 선택
 let reviewForm = document.querySelector("#reviewForm");
 let reviewInput = document.querySelector("#review");
@@ -28,6 +29,8 @@ let commentsSection = document.querySelector("#comments");
 let scoreInput = document.getElementById("score");
 
 const apiURL = "https://api.themoviedb.org/3/movie/" + id;
+const apiMovieURL =
+  "https://api.themoviedb.org/3/movie/" + id + "/videos?language=en-US";
 
 fetch(apiURL, options)
   .then((response) => response.json())
@@ -207,3 +210,28 @@ const currentTime = function () {
     seconds;
   return now;
 };
+
+fetch(apiMovieURL, options)
+  .then((response) => response.json())
+  .then((response) => {
+    console.log(response.results);
+    if (2 < response.results.length) {
+      let videoID00 = response.results[0].key;
+      let videoID01 = response.results[1].key;
+      let videoID02 = response.results[2].key;
+      movieVideo.innerHTML = `<iframe height="100%" src="https://www.youtube.com/embed/${videoID00}?autoplay=1"></iframe>
+      <iframe height="100%" src="https://www.youtube.com/embed/${videoID01}?autoplay=1"></iframe>
+      <iframe height="100%" src="https://www.youtube.com/embed/${videoID02}?autoplay=1"></iframe>`;
+    } else if (1 < response.results.length) {
+      let videoID00 = response.results[0].key;
+      let videoID01 = response.results[1].key;
+      movieVideo.innerHTML = `<iframe height="100%" src="https://www.youtube.com/embed/${videoID00}?autoplay=1"></iframe>
+      <iframe height="100%" src="https://www.youtube.com/embed/${videoID01}?autoplay=1"></iframe>`;
+    } else if (0 < response.results.length) {
+      let videoID00 = response.results[0].key;
+      movieVideo.innerHTML = `<iframe height="100%" src="https://www.youtube.com/embed/${videoID00}?autoplay=1"></iframe>`;
+    } else {
+      movieVideo.innerHTML = `<p class="noVideo">재생할 예고편이 없습니다.</p>`;
+    }
+  })
+  .catch((err) => console.error(err));
