@@ -20,7 +20,6 @@ fetch(
 )
   .then((response) => response.json())
   .then((response) => {
-    // console.log(response);
     // 전체 영화 나열
     response.results.forEach((movie) => {
       resultArray.push(movie);
@@ -35,11 +34,13 @@ fetch(
                           }"
                           alt=""
                         />
-                        <p class="movie_name"><b>${movie.title}</b></p>
-                        <p class="movie_rate ${getColor(
-                          movie.vote_average
-                        )}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
-                        <p class="movie_desc">${movie.overview}</p>
+                        <div class="movie-info">
+                          <p class="movie_name"><b>${movie.title}</b></p>
+                          <p class="movie_rate ${getColor(
+                            movie.vote_average
+                          )}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
+                          <p class="movie_desc">${movie.overview}</p>
+                        </div>
                       </div>`;
 
       document
@@ -70,11 +71,13 @@ fetch(
                             }"
                             alt=""
                           />
-                          <p class="movie_name"><b>${movie.title}</b></p>
-                          <p class="movie_rate ${getColor(
-                            movie.vote_average
-                          )}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
-                          <p class="movie_desc">${movie.overview}</p>
+                          <div class="movie-info">
+                            <p class="movie_name"><b>${movie.title}</b></p>
+                            <p class="movie_rate ${getColor(
+                              movie.vote_average
+                            )}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
+                            <p class="movie_desc">${movie.overview}</p>
+                          </div>
                         </div>`;
 
         document
@@ -130,11 +133,13 @@ fetch(
                                 }"
                                 alt=""
                               />
-                              <p class="movie_name"><b>${movie.title}</b></p>
-                              <p class="movie_rate ${getColor(
-                                movie.vote_average
-                              )}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
-                              <p class="movie_desc">${movie.overview}</p>
+                              <div class="movie-info">
+                                <p class="movie_name"><b>${movie.title}</b></p>
+                                <p class="movie_rate ${getColor(
+                                  movie.vote_average
+                                )}">✦ 평점 <b>${movie.vote_average}</b> ✦</p>
+                                <p class="movie_desc">${movie.overview}</p>
+                              </div>
                             </div>`;
 
           document
