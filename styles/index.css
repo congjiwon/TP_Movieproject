@@ -68,9 +68,9 @@ header {
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 10px;
+  padding: 2px;
   max-height: 100%;
-  background-color: #313131;
+  background-color: #313131e5;
   color: #fff;
   transform: translateY(101%);
   transition: transform 0.3s ease-in-out;
