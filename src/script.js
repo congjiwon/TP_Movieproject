@@ -60,8 +60,6 @@ fetch(
       });
       document.querySelector("#movies").innerHTML = "";
       arr1.forEach((movie) => {
-        console.log(movie.id);
-
         let temp_html = `<div class="movie-card" onClick="location.href='detail.html?id='+${
           movie.id
         }">
