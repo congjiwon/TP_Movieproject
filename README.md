@@ -21,12 +21,15 @@
 ---
 
 <div align="center">
-	<img width="1840" alt="스크린샷 2023-06-01 오후 4 06 48" src="https://github.com/oiooeo/exploreMovie/assets/72060405/c083a289-afea-4899-926d-83867f6e8be4">
+	<img width="1840" alt="스크린샷 2023-06-09 오전 10 44 50" src="https://github.com/kimpalpal/TP_Movieproject/assets/72060405/ec16437a-6cd0-40bb-a554-8daf4ec3fa6b">
+	<img width="1840" alt="스크린샷 2023-06-09 오전 10 45 00" src="https://github.com/kimpalpal/TP_Movieproject/assets/72060405/b36a1616-7662-48a0-aff6-b123fd7976c4">
 	<br>
-	<p>▼ 영화 ID를 알려주는 Alert 창 ▼</p>
-	<img width="1840" alt="스크린샷 2023-06-01 오후 4 07 15" src="https://github.com/oiooeo/exploreMovie/assets/72060405/cf21ac3c-324c-4feb-8caf-c03d63183e31">
+	<p>▼ 평점 순으로 정렬 ▼</p>
+	<img width="1840" alt="스크린샷 2023-06-09 오전 10 45 29" src="https://github.com/kimpalpal/TP_Movieproject/assets/72060405/b2b0061e-19c3-4d8e-bd89-3169604bf471">
+
 	<br>
-	<p>▼ 검색 결과 ▼</p>
-	<img width="1840" alt="스크린샷 2023-06-01 오후 4 07 34" src="https://github.com/oiooeo/exploreMovie/assets/72060405/53a35339-e624-41f9-a82f-31095cd2a34f">
-	<img width="1840" alt="스크린샷 2023-06-01 오후 4 07 42" src="https://github.com/oiooeo/exploreMovie/assets/72060405/e91b16a4-942b-437e-a7a3-0fdf77f5b6d6">
+	<p>영화 상세페이지</p>
+	<img width="1840" alt="스크린샷 2023-06-09 오전 10 45 43" src="https://github.com/kimpalpal/TP_Movieproject/assets/72060405/f0edde35-2858-4358-83cc-2af4202e85b9">
+	<img width="1840" alt="스크린샷 2023-06-09 오전 10 46 23" src="https://github.com/kimpalpal/TP_Movieproject/assets/72060405/062b64f2-9629-4754-9a65-a1ee17102708">
+
 </div>
