@@ -1,4 +1,3 @@
-// TMDB API KEY
 const options = {
   method: "GET",
   headers: {
@@ -13,14 +12,12 @@ const searchInput = document.getElementById("search_input");
 const searchButton = document.getElementById("search_btn");
 
 // Top Rated 영화 목록 API 받아오기
-// index.html id="movies" 부분에 카드 추가 (forEach 사용)
 fetch(
   "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
   options
 )
   .then((response) => response.json())
   .then((response) => {
-    // 전체 영화 나열
     response.results.forEach((movie) => {
       resultArray.push(movie);
 
@@ -96,7 +93,7 @@ fetch(
     searchButton.addEventListener("click", () => {
       function checkEng() {
         let input = searchInput.value;
-        let regex = /^[A-Za-z0-9]+$/; // 영어,숫자 포함된 문자열인지 확인
+        let regex = /^[A-Za-z0-9]+$/;
 
         if (!regex.test(input)) {
           alert("영어 또는 숫자로만 검색이 가능합니다");
@@ -113,8 +110,6 @@ fetch(
         resultArray.title.toLowerCase().includes(searchTerm)
       );
 
-      // 검색 결과가 1개 이상일 때 main에 띄울 부분
-      // 결과에 맞는 영화와 갯수 표시
       if (filteredMovies.length >= 1) {
         document
           .querySelector(".info-card")
@@ -146,7 +141,6 @@ fetch(
             .querySelector("#movies")
             .insertAdjacentHTML("beforeend", search_html);
         });
-        // 검색 결과가 없을 때 main에 띄울 부분
       } else {
         document
           .querySelector(".info-card")
