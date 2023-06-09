@@ -26,10 +26,8 @@
 	<br>
 	<p>▼ 평점 순으로 정렬 ▼</p>
 	<img width="1840" alt="스크린샷 2023-06-09 오전 10 45 29" src="https://github.com/kimpalpal/TP_Movieproject/assets/72060405/b2b0061e-19c3-4d8e-bd89-3169604bf471">
-	
 	<br>
 	<p>영화 상세페이지</p>
-	<img width="1840" alt="스크린샷 2023-06-09 오전 10 45 43" src="https://github.com/kimpalpal/TP_Movieproject/assets/72060405/f0edde35-2858-4358-83cc-2af4202e85b9">
-	<img width="1840" alt="스크린샷 2023-06-09 오전 10 46 23" src="https://github.com/kimpalpal/TP_Movieproject/assets/72060405/062b64f2-9629-4754-9a65-a1ee17102708">
-
+	<img width="1840" alt="스크린샷 2023-06-09 오전 10 45 43" src="https://github.com/kimpalpal/TP_Movieproject/assets/72060405/bee49287-4b71-49da-ba4a-3d089aa21c96">
+	<img width="1840" alt="스크린샷 2023-06-09 오전 10 46 23" src="https://github.com/kimpalpal/TP_Movieproject/assets/72060405/76fc4230-5d1d-4c44-8d77-5797cdd831b4">
 </div>
