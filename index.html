@@ -17,13 +17,15 @@
     </header>
 
     <main>
-      <!-- submit 후 새로고침 방지 => onsubmit="return false" -->
       <form id="search" class="search" name="search" onsubmit="return false">
         <p class="movieSearch">영화 검색 🍿</p>
-        <!-- 페이지 로드 / 새로고침 후 자동으로 검색창에 커서가 가도록 autofocus -->
         <input type="text" id="search_input" autocomplete="off" autofocus />
         <button type="submit" id="search_btn"><b>검색</b></button>
       </form>
+      <div class="buttons">
+        <button type="submit" id="vote"><b>평점순</b></button>
+        <button type="submit" id="popular"><b>인기순</b></button>
+      </div>
 
       <h2 class="info-card">검색 결과</h2>
       <div class="cards" id="movies"></div>

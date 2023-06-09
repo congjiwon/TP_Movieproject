@@ -52,18 +52,32 @@ header {
 }
 
 .movie-card {
+  position: relative;
   width: 300px;
   margin: 10px;
   border-radius: 7px;
-  background-color: #f4f4f4;
+  /* background-color: #f4f4f4; */
   color: #313131;
   justify-self: center;
   cursor: pointer;
+  overflow: hidden;
 }
 
-.cards > .movie_rate {
-  position: relative;
-  bottom: 2px;
+.movie-card .movie-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2px;
+  max-height: 100%;
+  background-color: #313131e5;
+  color: #fff;
+  transform: translateY(101%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.movie-card:hover .movie-info {
+  transform: translateY(0%);
 }
 
 .movie-card:hover {
@@ -82,11 +96,14 @@ header {
 
 .movie_img {
   width: 100%;
-  border-radius: 7px 7px 0px 0px;
+  border-radius: 7px;
 }
 
-.movie_name {
-  padding-top: 5px;
+.movie-info p {
+  margin: 5px;
+}
+
+.movie-info .movie_name {
   font-family: "DM Serif Display", serif;
   font-size: 20px;
   line-height: 23px;
@@ -94,41 +111,52 @@ header {
   text-align: center;
 }
 
-.movie_name,
-.movie_desc,
-.movie_rate {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.movie_desc {
-  margin-top: 8px;
-  margin-bottom: 8px;
+.movie-info .movie_desc {
   font-family: "DM Serif Display", serif;
   font-size: 17px;
-  color: #414141;
+  color: #fff;
 }
 
-.movie_rate {
-  margin-top: 8px;
-  padding: 5px;
+.movie-info .movie_rate {
   font-size: 15.5px;
   width: fit-content;
   height: fit-content;
   border-radius: 3px;
 }
 
-.movie_rate.pink {
+.movie-info .movie_rate.pink {
   background-color: rgb(255, 161, 161);
   color: #313131;
 }
 
-.movie_rate.yellow {
+.movie-info .movie_rate.yellow {
   background-color: rgb(248, 248, 128);
   color: #313131;
 }
 
-.movie_rate.blue {
+.movie-info .movie_rate.blue {
   background-color: rgb(181, 192, 253);
   color: #313131;
+}
+
+.buttons {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#vote,
+#popular {
+  font-size: 17px;
+  color: #313131;
+  text-decoration: none;
+  background-color: rgb(255, 161, 161);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#vote:hover,
+#popular:hover {
+  color: #f4f4f4;
 }

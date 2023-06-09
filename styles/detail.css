@@ -39,7 +39,7 @@ main {
 }
 
 #moviePoster {
-  width: 250px;
+  width: 300px;
   align-items: center;
 }
 
@@ -48,6 +48,7 @@ main {
   float: left;
   margin-right: 50px;
   border-radius: 10px;
+  margin-bottom: 30px;
 }
 
 .movie_info {
@@ -56,9 +57,21 @@ main {
 
 #movieOverview {
   padding-top: 20px;
-  clear: both;
   font-size: 17px;
-  margin-bottom: 50px; /* 추가된 부분 */
+}
+
+#movieVideo {
+  clear: both;
+  margin-top: 50px;
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ccc;
+}
+
+.noVideo {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .review form {
@@ -100,8 +113,8 @@ main {
 
 #comments {
   margin-top: 30px;
-  padding-top: 30px; /* comments와 리뷰들 사이의 간격을 늘리기 위해 추가 */
-  border-top: 1px solid #ccc; /* comments와 리뷰들 사이에 구분선을 추가 */
+  padding-top: 30px;
+  border-top: 1px solid #ccc;
 }
 
 .comment {
