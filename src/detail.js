@@ -24,6 +24,7 @@ let authorInput = document.querySelector("#author");
 let passwordInput = document.querySelector("#password");
 let commentsSection = document.querySelector("#comments");
 let scoreInput = document.getElementById("score");
+let reviewIdInput = document.getElementById("reviewId");
 
 const apiURL = "https://api.themoviedb.org/3/movie/" + id;
 const apiMovieURL =
@@ -83,12 +84,12 @@ function displayReviews() {
 
     editButton.addEventListener("click", () => {
       let password = commentDiv.querySelector(".comment-password").value;
-      editReview(i, password);
+      editReview(review.reviewId, password);
     });
 
     deleteButton.addEventListener("click", () => {
       let password = commentDiv.querySelector(".comment-password").value;
-      deleteReview(i, password);
+      deleteReview(review.reviewId, password);
     });
 
     commentsSection.appendChild(commentDiv);
@@ -114,14 +115,14 @@ function saveReviewToLocalStorage(review) {
 }
 
 // 리뷰 수정
-function editReview(index, password) {
+function editReview(reviewId, password) {
   let reviews = getReviewsFromLocalStorage();
-  let review = reviews[index];
+  let index = reviews.findIndex(review => review.reviewId === reviewId)
 
-  if (review.password === password) {
-    let newContent = prompt("수정할 내용을 입력하세요:", review.content);
+  if (reviews[index].password === password) {
+    let newContent = prompt("수정할 내용을 입력하세요:", reviews[index].content);
     if (newContent) {
-      review.content = newContent;
+      reviews[index].content = newContent;
       localStorage.setItem("reviews", JSON.stringify(reviews));
       displayReviews();
     }
@@ -131,11 +132,12 @@ function editReview(index, password) {
 }
 
 // 리뷰 삭제
-function deleteReview(index, password) {
+function deleteReview(reviewId, password) {
+  console.log(reviewId)
   let reviews = getReviewsFromLocalStorage();
-  let review = reviews[index];
+  let index = reviews.findIndex (review => review.reviewId === reviewId)
 
-  if (review.password === password) {
+  if (reviews[index].password === password) {
     reviews.splice(index, 1);
     localStorage.setItem("reviews", JSON.stringify(reviews));
     displayReviews();
@@ -153,6 +155,7 @@ reviewForm.addEventListener("submit", (e) => {
   let password = passwordInput.value;
   let score = scoreInput.value;
   let time = currentTime();
+  let reviewId = self.crypto.randomUUID();
 
   let passwordStandard = /^\d{4}$/;
   if (!passwordStandard.test(password) && reviewContent && author) {
@@ -164,6 +167,7 @@ reviewForm.addEventListener("submit", (e) => {
       score: score,
       password: password,
       time: time,
+      reviewId: reviewId,
     };
     saveReviewToLocalStorage(review);
     reviewInput.value = "";
