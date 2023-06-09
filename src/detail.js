@@ -1,5 +1,3 @@
-// detail.js
-
 const options = {
   method: "GET",
   headers: {
@@ -9,7 +7,7 @@ const options = {
   },
 };
 
-let id = location.href.substr(location.href.lastIndexOf("=") + 1); //문자열을 id 변수에 할당 되기 전 숫잘 변환 (string → number 조건 충족)
+let id = location.href.substr(location.href.lastIndexOf("=") + 1);
 
 let movieName = document.querySelector("#movieName");
 let movieOriginName = document.querySelector("#movieOriginName");
@@ -19,15 +17,18 @@ let movieGenre = document.querySelector("#movieGenre");
 let movieRuntime = document.querySelector("#movieRuntime");
 let movieRate = document.querySelector("#movieRate");
 let movieOverview = document.querySelector("#movieOverview");
-// 리뷰 dom 요소 선택
+let movieVideo = document.querySelector("#movieVideo");
 let reviewForm = document.querySelector("#reviewForm");
 let reviewInput = document.querySelector("#review");
 let authorInput = document.querySelector("#author");
 let passwordInput = document.querySelector("#password");
 let commentsSection = document.querySelector("#comments");
 let scoreInput = document.getElementById("score");
+let reviewIdInput = document.getElementById("reviewId");
 
 const apiURL = "https://api.themoviedb.org/3/movie/" + id;
+const apiMovieURL =
+  "https://api.themoviedb.org/3/movie/" + id + "/videos?language=en-US";
 
 fetch(apiURL, options)
   .then((response) => response.json())
@@ -42,7 +43,7 @@ fetch(apiURL, options)
     movieGenre.textContent = "장르 | " + genresArr;
     movieRuntime.textContent = "러닝타임 | " + response.runtime + "분";
     movieRate.textContent =
-      "평점 | " + Math.round(response.vote_average * 10) / 10; // 숫자 결과를 문자열로 변환 (number → string 조건 충족)
+      "평점 | " + Math.round(response.vote_average * 10) / 10;
     movieOverview.textContent = response.overview;
     moviePoster.innerHTML = `<img
                               class="movie_img"
@@ -50,7 +51,7 @@ fetch(apiURL, options)
                               alt=""
                             />`;
 
-    displayReviews(); //리뷰 표시
+    displayReviews();
   })
   .catch((err) => console.error(err));
 
@@ -58,11 +59,10 @@ fetch(apiURL, options)
 function displayReviews() {
   let reviews = getReviewsFromLocalStorage();
   let movieId = location.href.substr(location.href.lastIndexOf("=") + 1);
-  let filteredReviews = reviews.filter((review) => review.movieId === movieId); // movie id 필터링해서 표시하기
+  let filteredReviews = reviews.filter((review) => review.movieId === movieId);
   commentsSection.innerHTML = "";
 
   for (let i = 0; i < filteredReviews.length; i++) {
-    //필터링
     let review = filteredReviews[i];
     let star = "⭐️";
     let score = star.repeat(review.score);
@@ -79,20 +79,17 @@ function displayReviews() {
       </div>
     `;
 
-    // edit과 delete 클래스 요소를 변수에 할당
     let editButton = commentDiv.querySelector(".comment-edit");
     let deleteButton = commentDiv.querySelector(".comment-delete");
 
-    // 콜백함수로 확인 비밀번호를 가져오고 editreview 함수 호출. 순회중인 리뷰 인덱스
     editButton.addEventListener("click", () => {
       let password = commentDiv.querySelector(".comment-password").value;
-      editReview(i, password);
+      editReview(review.reviewId, password);
     });
 
-    // delete 함수 호출
     deleteButton.addEventListener("click", () => {
       let password = commentDiv.querySelector(".comment-password").value;
-      deleteReview(i, password);
+      deleteReview(review.reviewId, password);
     });
 
     commentsSection.appendChild(commentDiv);
@@ -103,45 +100,45 @@ function displayReviews() {
 function getReviewsFromLocalStorage() {
   let reviews = localStorage.getItem("reviews");
   if (reviews) {
-    return JSON.parse(reviews); // 문자열을 javascript 객체로 변환
+    return JSON.parse(reviews);
   } else {
-    return []; // 존재하지 않으면 빈 배열 반환
+    return [];
   }
 }
 // 로컬 스토리지에 저장
 function saveReviewToLocalStorage(review) {
-  let reviews = getReviewsFromLocalStorage(); // 겟리뷰에서 함수 호출
+  let reviews = getReviewsFromLocalStorage();
   let movieId = location.href.substr(location.href.lastIndexOf("=") + 1);
-  review.movieId = movieId; // 리뷰 저장시 id도 함께 저장
-  reviews.push(review); // 리뷰 배열에 추가한다 (push 메소드 사용)
-  localStorage.setItem("reviews", JSON.stringify(reviews)); // json 문자열로 저장
+  review.movieId = movieId;
+  reviews.push(review);
+  localStorage.setItem("reviews", JSON.stringify(reviews));
 }
 
 // 리뷰 수정
-function editReview(index, password) {
+function editReview(reviewId, password) {
   let reviews = getReviewsFromLocalStorage();
-  let review = reviews[index]; // 해당 인덱스에 위치한 리뷰를 가져옴
+  let index = reviews.findIndex(review => review.reviewId === reviewId)
 
-  if (review.password === password) {
-    // 패스워드가 일치하는 지 확인 (조건문 중첩-2중 if 사용)
-    let newContent = prompt("수정할 내용을 입력하세요:", review.content); // 일치하면 prompt 사용하여 수정할 내용을 입력받음
+  if (reviews[index].password === password) {
+    let newContent = prompt("수정할 내용을 입력하세요:", reviews[index].content);
     if (newContent) {
-      review.content = newContent; // 뉴 콘텐트를 받음
-      localStorage.setItem("reviews", JSON.stringify(reviews)); // 셋 아이템 사용하여 다시 배열하고 저장
-      displayReviews(); //표시
+      reviews[index].content = newContent;
+      localStorage.setItem("reviews", JSON.stringify(reviews));
+      displayReviews();
     }
   } else {
-    alert("확인 비밀번호가 일치하지 않습니다."); // 일치하지 않는 경우
+    alert("확인 비밀번호가 일치하지 않습니다.");
   }
 }
 
 // 리뷰 삭제
-function deleteReview(index, password) {
+function deleteReview(reviewId, password) {
+  console.log(reviewId)
   let reviews = getReviewsFromLocalStorage();
-  let review = reviews[index];
+  let index = reviews.findIndex (review => review.reviewId === reviewId)
 
-  if (review.password === password) {
-    reviews.splice(index, 1); // 인덱스 위치의 요소를 1개 제거한다는 말 (splice 메소드 사용)
+  if (reviews[index].password === password) {
+    reviews.splice(index, 1);
     localStorage.setItem("reviews", JSON.stringify(reviews));
     displayReviews();
   } else {
@@ -151,14 +148,14 @@ function deleteReview(index, password) {
 
 // 폼 제출 이벤트
 reviewForm.addEventListener("submit", (e) => {
-  e.preventDefault(); // 새로고침 방지
+  e.preventDefault();
 
-  // 비민번호 내용 작성자 input 저장.
   let reviewContent = reviewInput.value;
   let author = authorInput.value;
   let password = passwordInput.value;
   let score = scoreInput.value;
   let time = currentTime();
+  let reviewId = self.crypto.randomUUID();
 
   let passwordStandard = /^\d{4}$/;
   if (!passwordStandard.test(password) && reviewContent && author) {
@@ -170,18 +167,19 @@ reviewForm.addEventListener("submit", (e) => {
       score: score,
       password: password,
       time: time,
+      reviewId: reviewId,
     };
-    saveReviewToLocalStorage(review); // 로컬 스토리지에 저장
+    saveReviewToLocalStorage(review);
     reviewInput.value = "";
     authorInput.value = "";
     passwordInput.value = "";
-    displayReviews(); // 함수 호출
+    displayReviews();
   } else {
     alert("리뷰, 작성자, 확인 비밀번호를 모두 입력해주세요.");
   }
 });
 
-//댓글 입력한 시간 가져로는 시간 함수
+// 댓글 입력한 시간 가져오는 시간 함수
 const currentTime = function () {
   let today = new Date();
 
@@ -207,3 +205,28 @@ const currentTime = function () {
     seconds;
   return now;
 };
+
+fetch(apiMovieURL, options)
+  .then((response) => response.json())
+  .then((response) => {
+    console.log(response.results);
+    if (2 < response.results.length) {
+      let videoID00 = response.results[0].key;
+      let videoID01 = response.results[1].key;
+      let videoID02 = response.results[2].key;
+      movieVideo.innerHTML = `<iframe height="100%" src="https://www.youtube.com/embed/${videoID00}?autoplay=1"></iframe>
+      <iframe height="100%" src="https://www.youtube.com/embed/${videoID01}?autoplay=1"></iframe>
+      <iframe height="100%" src="https://www.youtube.com/embed/${videoID02}?autoplay=1"></iframe>`;
+    } else if (1 < response.results.length) {
+      let videoID00 = response.results[0].key;
+      let videoID01 = response.results[1].key;
+      movieVideo.innerHTML = `<iframe height="100%" src="https://www.youtube.com/embed/${videoID00}?autoplay=1"></iframe>
+      <iframe height="100%" src="https://www.youtube.com/embed/${videoID01}?autoplay=1"></iframe>`;
+    } else if (0 < response.results.length) {
+      let videoID00 = response.results[0].key;
+      movieVideo.innerHTML = `<iframe height="100%" src="https://www.youtube.com/embed/${videoID00}?autoplay=1"></iframe>`;
+    } else {
+      movieVideo.innerHTML = `<p class="noVideo">재생할 예고편이 없습니다.</p>`;
+    }
+  })
+  .catch((err) => console.error(err));
